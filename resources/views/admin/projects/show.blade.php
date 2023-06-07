@@ -9,4 +9,5 @@
         {{ $project->slug }}
     </div>
     <p class="mt-4">{{ $project->description }}</p>
+    <p class="mt-4">Tipologia: {{ $project->type->name }}</p>
 @endsection
