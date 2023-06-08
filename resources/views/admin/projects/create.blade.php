@@ -19,6 +19,17 @@
                 @endforeach
             </select>
         </div>
+        <div class="mb-3">
+            @foreach ($technologies as $technology)
+                
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="idArray[]" value="{{$technology->id}}" id="{{$technology->name}}">
+                <label class="form-check-label" for="{{$technology->name}}">
+                    {{$technology->name}}
+                </label>
+            </div>
+            @endforeach
+        </div>
         <button class="btn btn-secondary" type="submit">invia</button>
 
     </form>
