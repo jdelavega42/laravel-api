@@ -10,4 +10,12 @@
     </div>
     <p class="mt-4">{{ $project->description }}</p>
     <p class="mt-4">Tipologia: {{ $project->type?->name }}</p>
+    <p class="mt-4">Tecnologie:
+        @forelse ($project->technologies as $technology)
+        {{$technology->name}} {{$loop-> last ? '':','}}
+    @empty
+        null
+    @endforelse
+    </p>
+
 @endsection
