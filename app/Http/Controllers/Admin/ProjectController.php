@@ -46,7 +46,9 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $project = Project::create($data);
-        $project->technologies()->attach($data['idArray']);
+        if ($request->has('technologies')){
+            $project->technologies()->attach($data['technologies']);
+        }
         return redirect()->route('admin.projects.show', compact('project'));
     }
 
@@ -71,7 +73,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -86,6 +89,12 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
+
+        if ($request->has('technologies')){
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->detach();
+        }
         return redirect()->route('admin.projects.show', compact('project'));
 
     }
@@ -98,6 +107,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->detach();
         $project->delete();
         return redirect()->route('admin.projects.index');
     }

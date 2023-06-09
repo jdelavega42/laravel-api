@@ -23,6 +23,17 @@
                 @endforeach
             </select>
         </div>
+        <div class="mb-3">
+            @foreach ($technologies as $technology)
+                
+            <div class="form-check">
+                <input @checked(old('technologies') ? in_array($technology->id, old('technologies',[])) : $project->technologies->contains($technology)) class="form-check-input" type="checkbox" name="technologies[]" value="{{$technology->id}}" id="{{$technology->name}}">
+                <label class="form-check-label" for="{{$technology->name}}">
+                    {{$technology->name}}
+                </label>
+            </div>
+            @endforeach
+        </div>
         <button class="btn btn-primary" type="submit">Invia</button>
     </form>
 @endsection
