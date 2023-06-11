@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class TypeController extends Controller
 {
@@ -34,9 +37,13 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['name']);
+        $type = Type::create($data);
+        return redirect()->route('admin.types.index');
+
     }
 
     /**
@@ -81,6 +88,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index');
     }
 }

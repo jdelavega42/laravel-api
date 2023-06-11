@@ -18,6 +18,16 @@
                 <th scope="row">{{$type->id}}</th>
                 <td> {{$type->name}}</td>
                 <td> {{$type->slug}}</td>
+                <td>
+                    <form class="d-inline-block" action="{{ route('admin.types.destroy', $type) }}"
+                        method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

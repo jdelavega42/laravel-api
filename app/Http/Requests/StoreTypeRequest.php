@@ -30,8 +30,9 @@ class StoreTypeRequest extends FormRequest
 
     public function messages()
     {
-        return[
-            'name.required' => 'inserisci dati nell\'input',
-        ]
+        return [
+            'name.required' => "inserisci dati nell'input",
+            'name.max' => "Sono consentiti massimo :max caratteri"
+        ];
     }
 }
