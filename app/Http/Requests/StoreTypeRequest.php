@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreProjectRequest extends FormRequest
+class StoreTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +24,14 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:50'],
-            'description' => 'nullable',
-            'type_id' => ['nullable', 'exists:types,id'],
-            'technologies' => ['nullable', 'exists:technologies,id']
+            'name'=> ['required', 'max:20']
         ];
     }
 
-    
+    public function messages()
+    {
+        return[
+            'name.required' => 'inserisci dati nell\'input',
+        ]
+    }
 }

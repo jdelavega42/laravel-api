@@ -17,5 +17,5 @@
         null
     @endforelse
     </p>
-
+    <a href="{{url()->previous()}}" class="btn btn-warning">Indietro</a>
 @endsection

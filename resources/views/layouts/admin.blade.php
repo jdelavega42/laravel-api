@@ -70,6 +70,12 @@
                                     <i class="fa-regular fa-folder-open"></i> Projects
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.types.index') }}">
+                                    <i class="fa-regular fa-folder-open"></i> Types
+                                </a>
+                            </li>
                         </ul>
 
 

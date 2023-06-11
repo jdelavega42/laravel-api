@@ -1,5 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+
+<h2>Crea progetto</h2>
+
+    @include('layouts.partials.errors')
+
     <form action="{{route('admin.projects.store')}}" method="POST">
         @csrf
         <div class="mb-3">
@@ -30,6 +35,8 @@
             </div>
             @endforeach
         </div>
+        <a href="{{url()->previous()}}" class="btn btn-warning">Indietro</a>
+
         <button class="btn btn-secondary" type="submit">invia</button>
 
     </form>

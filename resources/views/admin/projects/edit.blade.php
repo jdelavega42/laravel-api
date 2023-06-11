@@ -3,6 +3,8 @@
 @section('content')
     <h2>Modifica il progetto {{ $project->title }}</h2>
 
+    @include('layouts.partials.errors')
+
     <form method="POST" action="{{ route('admin.projects.update', $project->slug) }}">
         @csrf
         @method('PUT')
@@ -33,6 +35,7 @@
             </div>
             @endforeach
         </div>
+        <a href="{{url()->previous()}}" class="btn btn-warning">Indietro</a>
         <button class="btn btn-primary" type="submit">Invia</button>
     </form>
 @endsection
